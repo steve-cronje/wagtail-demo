@@ -19,5 +19,7 @@
         <h5>Also note, only published (live) products will appear here!</h5>
     {% endif %}
     <hr />
-    <p><a href="{% pageurl page.get_parent %}">Back to home</a></p>
+    {% if page.get_parent %}
+        <p><a href="{% pageurl page.get_parent %}">Back to home</a></p>
+    {% endif %}
 {% endblock %}
