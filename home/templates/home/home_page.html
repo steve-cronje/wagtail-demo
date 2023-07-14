@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+    <h3>{{ page.title_header }}</h3>
+    {{ page.body|richtext }}
+{% endblock %}

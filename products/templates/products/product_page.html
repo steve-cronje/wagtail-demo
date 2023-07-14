@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-productpage{% endblock %}
+
+{% block content %}
+    <h2>{{ page.title_header }}</h2>
+    {% if page.get_children_count > 0 %}
+        <ul>
+        {% for product in products %}
+            <li>
+                <a href="{% pageurl product %}">{{ product.specific.title_header }}</a>
+            </li>   
+        {% endfor %}
+        </ul>
+    {% else %}
+        <h3>Sorry! There currently are no products! Please create some in the admin area!</h3>
+        <h5>Also note, only published (live) products will appear here!</h5>
+    {% endif %}
+    <hr />
+    <p><a href="{% pageurl page.get_parent %}">Back to home</a></p>
+{% endblock %}
