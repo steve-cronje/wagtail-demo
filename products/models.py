@@ -3,6 +3,7 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
+from django.contrib.auth.models import User
 
 # Create your models here.
 class ProductPage(Page):
@@ -22,6 +23,7 @@ class ProductPage(Page):
 class ProductDetailPage(Page):
     title_header = models.CharField("Product title", max_length=150)
     body = RichTextField(blank=True)
+    registered_users = models.ManyToManyField(User, related_name='products')
 
     search_fields = Page.search_fields + [
         index.SearchField('title_header')

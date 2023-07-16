@@ -9,5 +9,30 @@
     <hr/>
     {{ page.body|richtext }}
     <hr/>
+    {% if user.is_authenticated %}
+        {% if user in page.registered_users.all %}
+            <button type="button" disabled>Already registered.</button>
+        {% else %}
+            <button id="register_button" type="button" onclick="click_button()">A button!</button>
+        {% endif %}
+    <hr/>
+    {% endif %}
     <p><a href="{% pageurl page.get_parent %}">Back to products</a></p>
+
+    <script>
+        function click_button() {
+            $.ajax({
+                url:"{% url 'register_product' %}", 
+                method: "POST",
+                data: {
+                    "page": "{{ page.id }}",
+                    "user": "{{ user.id }}",
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function(){
+                    $("#register_button").html("Registered!").prop("disabled", true);
+                }
+            })
+        }
+    </script>
 {% endblock %}

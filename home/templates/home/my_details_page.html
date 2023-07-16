@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-mydetailspage{% endblock %}
+
+{% block content %}
+    <h2>{{ page.title_header }}</h2>
+    {% if user.is_authenticated %}
+        <h3>Welcome {{ user.first_name }} {{ user.last_name }} {{ user.email }}</h3>
+        {% if user.products.all.count > 0 %}
+            <hr/>
+            <ul>
+            {% for product in user.products.all %}
+                <li><a href="{% pageurl product %}">{{ product.specific.title_header }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% else %}
+        <h4>This page is meant for logged in users.</h4>
+        <p><a href="{% url 'custom_login' %}">Please login here</a></p>
+        <p><a href="{% url 'custom_register' %}">Or register here, if you don't have an account!</a></p>
+    {% endif %}
+{% endblock %}

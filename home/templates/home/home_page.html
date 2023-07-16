@@ -7,4 +7,12 @@
 {% block content %}
     <h3>{{ page.title_header }}</h3>
     {{ page.body|richtext }}
+    {% if user.is_authenticated %}
+        <h5>hello {{ user.email }}</h5>
+        <p><a href="{% url 'custom_logout' %}">Logout?</a></p>
+    {% else %}
+        <hr/>
+        <p><a href="{% url 'custom_register' %}">Register for account</a></p>
+        <p><a href="{% url 'custom_login' %}">Login</a></p>
+    {% endif %}
 {% endblock %}

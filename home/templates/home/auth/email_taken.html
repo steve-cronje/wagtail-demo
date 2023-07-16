@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Email Taken!{% endblock title %}
+
+{% block content %}
+<h2>That email address has already been taken!</h2>
+<h4>Would you like to login instead?</h4>
+<p><a href="{% url 'custom_login' %}">Login</a></p>
+<p><a href="{% url 'custom_register' %}">Back to register</a></p>
