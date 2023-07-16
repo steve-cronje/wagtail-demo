@@ -1,3 +1,3 @@
 # wagtail-demo
 
-### tech. assessment for unomena
+### tech. assessment
